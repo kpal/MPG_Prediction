@@ -7,7 +7,7 @@ shinyUI(pageWithSidebar(
         numericInput('id1', 'Weight (in 1000 lbs)', 0.5, min=0.5, max=10, step=0.1),
         numericInput('id2', 'Horsepower', 50, min=50, max=500, step=5),
         radioButtons('id3', 'Number of Cylinders', c('4' = '4', '6' = '6', '8' = '8')),
-        radioButtons('id4', 'Transmission Type', c('Automatic' = 'Automatic', 'Manual' = 'Manual')),
+        radioButtons('id4', 'Transmission Type', c('Automatic' = '0', 'Manual' = '1')),
         submitButton('Submit')
     ),
     

@@ -5,7 +5,7 @@ shinyServer(
         output$oid1 <- renderText({
             data(mtcars)
             mtcars$cyl <- factor(mtcars$cyl)
-            mtcars$am <- factor(mtcars$am, labels=c('Automatic', 'Manual'))
+            mtcars$am <- factor(mtcars$am)
             modelFit <- lm(mpg~cyl+hp+wt+am, data=mtcars)
         
             wt <- input$id1
