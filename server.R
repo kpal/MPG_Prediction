@@ -3,14 +3,19 @@ library(shiny)
 shinyServer(
     function(input, output) {
         output$oid1 <- renderText({
-            if(input$id3 == '4')
-                intercept <- 33.70832
-            else if(input$id3 == '6')
-                intercept <- 30.67698
-            else if(input$id3 == '8')
-                intercept <- 31.54464
-            mpg <- intercept + as.numeric(input$id4)*1.80921 - input$id2*0.03211 - input$id1*2.49683
-            mpg        
+            data(mtcars)
+            mtcars$cyl <- factor(mtcars$cyl)
+            mtcars$am <- factor(mtcars$am, labels=c('Automatic', 'Manual'))
+            modelFit <- lm(mpg~cyl+hp+wt+am, data=mtcars)
+        
+            wt <- input$id1
+            hp <- input$id2
+            cyl <- input$id3
+            am <- input$id4
+        
+            newData <- data.frame(wt=wt, hp=hp, cyl=cyl, am=am)
+            pred <- predict(modelFit, newData)
+            pred
         })
     }
 )
